@@ -9,12 +9,12 @@ import {
 import { Socket, Server } from 'socket.io'
 
 @WebSocketGateway()
-export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect{
+export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
   
   private logger: Logger = new Logger('AppGateway');
 
   afterInit(server: Server) {
-    this.logger.log('initialized');
+    this.logger.log('initialized!');
   }
 
   handleDisconnect(client: Socket) {
@@ -27,6 +27,7 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
 
   @SubscribeMessage('msgToServer')
   handleMessage(client: Socket, text: string): WsResponse<string> {
+    console.log(text);
     return { event: 'msgToClient', data: text };
   }
 
