@@ -31,4 +31,10 @@ export class AppGateway implements OnGatewayInit, OnGatewayConnection, OnGateway
     return { event: 'msgToClient', data: text };
   }
 
+  @SubscribeMessage('abc')
+  handleMessage2(client: Socket, text: string): WsResponse<string> {
+    console.log(text);
+    return { event: 'msgToClient', data: "def" };
+  }
+
 }
